@@ -861,5 +861,64 @@ navbar .logo {
 }
 
 
+/* Responsive styles for small screens */
+@media screen and (max-width: 768px) {
+  .container-room {
+    flex-direction: column;
+  }
+
+  .left-cont,
+  .right-cont {
+    flex: none;
+    width: 100%;
+  }
+
+  .whiteboard-cont canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .chat-input-cont {
+    flex-direction: column;
+    padding: 0 10px;
+  }
+
+  .ci-cont, .ci-send {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .tab-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .video-cont-single .video-box {
+    width: 100%;
+    height: auto;
+  }
+
+  .utils {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .colors-cont {
+    flex-wrap: wrap;
+  }
+
+  .overlay .box {
+    width: 90%;
+  }
+}
+
+
+
+
+
+
+
+
 
 
