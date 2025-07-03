@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>MaasMeet - Video Call & Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/6510466b6c.js" crossorigin="anonymous"></script>
+  <style>
+    @keyframes marquee {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .box-shadow {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .box-shadow:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: url("images/backgroundimg1.jpg") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .scroll-text {
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      animation: marquee 12s linear infinite;
+      transition: text-shadow 0.3s ease;
+    }
+
+    .scroll-text:hover {
+      text-shadow: 0 0 10px white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header Bar with Logo and Scrolling Text -->
+  <div style="width: 100%; background: rgb(72, 72, 70); box-shadow: 0px 4px 12px rgba(0,0,0,0.1); display: flex; align-items: center; padding: 10px 20px; position: fixed; top: 0; left: 0; z-index: 100; overflow: hidden;">
+    <img src="images/logo maas group of company.png" alt="MAAS Group Logo" style="height: 50px; margin-right: 20px;">
+    
+    <div style="white-space: nowrap; overflow: hidden; width: 100%;">
+      <div class="scroll-text">
+        MAAS Media Meeting Platform - Connect Instantly • Secure & Private • Open Source • No Sign-up Required
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; padding-top: 100px; gap: 40px;">
+
+    <!-- Create/Join Room Box -->
+    <div class="box-shadow" style="background: white; padding: 0; border-radius: 12px; width: 500px; height: 420px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;">
+
+      <!-- Top Header Section -->
+      <div style="width: 100%; padding: 20px; background: #000;">
+        <h2 style="margin: 0; font-size: 24px; color: white; text-align: center;">
+          <span onmouseover="this.style.textShadow='0 0 10px white'" 
+                onmouseout="this.style.textShadow='none'">
+            Create Video Meetings in One Click
+          </span>
+        </h2>
+      </div>
+
+      <!-- Middle Input -->
+      <div style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+        <input type="text" placeholder="Enter Room Code" id="roomcode" 
+          style="padding: 16px; font-size: 18px; border-radius: 8px; border: 1px solid #ccc;">
+      </div>
+
+      <!-- Bottom Buttons -->
+      <div style="padding: 20px; display: flex; justify-content: space-between; gap: 10px;">
+        <button id="createroom" 
+          style="flex: 1; padding: 14px; background-color: #2ecc71; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">
+          Create Room
+        </button>
+        <button id="joinroom" 
+          style="flex: 1; padding: 14px; background-color: #27ae60; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">
+          Join Room
+        </button>
+      </div>
+    </div>
+
+    <!-- Video Display Box -->
+    <div class="box-shadow" style="position: relative; width: 500px; height: 420px; background: white; border: 3px solid black; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+      <video class="video-self" autoplay muted playsinline style="width: 100%; height: 100%; border-radius: 12px; object-fit: cover; background-color: #000;"></video>
+      <div class="settings" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px;">
+        <div class="device" id="mic" style="background: white; padding: 10px; border-radius: 50%; box-shadow: 0 0 5px rgba(0,0,0,0.2); cursor: pointer;">
+          <i class="fas fa-microphone"></i>
+        </div>
+        <div class="device" id="webcam" style="background: white; padding: 10px; border-radius: 50%; box-shadow: 0 0 5px rgba(0,0,0,0.2); cursor: pointer;">
+          <i class="fas fa-video"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/landing.js"></script>
+</body>
+
+</html>
