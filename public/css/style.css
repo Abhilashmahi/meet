@@ -861,6 +861,7 @@ navbar .logo {
 }
 
 /*/* ----Base styling fixes if not already present ---*/
+./* Base styling fixes if not already present */
 .video-frame {
   width: 100%;
   height: auto;
@@ -887,6 +888,14 @@ navbar .logo {
   font-size: 14px;
 }
 
+/* Desktop footer style */
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Responsive layout for mobile screens */
 @media (max-width: 768px) {
   .container-room {
@@ -894,13 +903,15 @@ navbar .logo {
     height: auto;
   }
 
-  .left-cont, .right-cont {
+  .left-cont,
+  .right-cont {
     width: 100% !important;
     max-width: 100%;
     flex: none;
   }
 
-  .video-cont-single, .video-box {
+  .video-cont-single,
+  .video-box {
     width: 100% !important;
     max-width: 100%;
     height: auto;
@@ -964,15 +975,31 @@ navbar .logo {
     box-sizing: border-box;
   }
 
-  .utils {
-    flex-wrap: wrap;
-    justify-content: center;
+  .footer {
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
   }
 
   .copycode-cont {
-    text-align: center;
+    order: -1; /* Move above .utils */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     padding: 10px 0;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .utils {
+    order: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
   }
 
   .overlay .box {
