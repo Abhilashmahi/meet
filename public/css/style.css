@@ -860,17 +860,52 @@ navbar .logo {
     border-left: 1px solid #ccc;
 }
 
+/*/* ----Base styling fixes if not already present ---*/
+.video-frame {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
 
-/* Responsive styles for small screens */
-@media screen and (max-width: 768px) {
+.chat-input-cont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.ci-cont input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.chat-send {
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+/* Responsive layout for mobile screens */
+@media (max-width: 768px) {
   .container-room {
     flex-direction: column;
+    height: auto;
   }
 
-  .left-cont,
-  .right-cont {
+  .left-cont, .right-cont {
+    width: 100% !important;
+    max-width: 100%;
     flex: none;
-    width: 100%;
+  }
+
+  .video-cont-single, .video-box {
+    width: 100% !important;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
   }
 
   .whiteboard-cont canvas {
@@ -880,45 +915,68 @@ navbar .logo {
 
   .chat-input-cont {
     flex-direction: column;
-    padding: 0 10px;
+    align-items: stretch;
+    padding: 10px;
   }
 
-  .ci-cont, .ci-send {
+  .ci-cont {
     width: 100%;
-    margin-bottom: 5px;
+  }
+
+  .ci-cont input.chat-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  .ci-send {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .chat-send {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
   }
 
   .tab-buttons {
-    display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
   }
 
-  .video-cont-single .video-box {
+  .tab-section {
+    width: 100% !important;
+    max-width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .chat-cont {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .attendees-container {
     width: 100%;
-    height: auto;
+    padding: 10px;
+    box-sizing: border-box;
   }
 
   .utils {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 10px;
   }
 
-  .colors-cont {
-    flex-wrap: wrap;
+  .copycode-cont {
+    text-align: center;
+    padding: 10px 0;
   }
 
   .overlay .box {
     width: 90%;
+    padding: 20px;
   }
 }
-
-
-
-
-
-
-
-
-
-
