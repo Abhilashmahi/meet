@@ -199,7 +199,7 @@ function CopyClassText() {
 continueButt.addEventListener('click', () => {
     if (nameField.value == '') return;
     username = nameField.value;
-    overlayContainer.style.visibility = 'hidden';
+    overlayContainer.style.display = 'none';
     document.querySelector("#myname").innerHTML = `${username} (You)`;
     socket.emit("join room", roomid, username);
 
@@ -220,6 +220,9 @@ socket.on('user count', count => {
         videoContainer.className = 'video-cont-single';
     }
 })
+
+
+
 
 let peerConnection;
 
@@ -268,6 +271,53 @@ function startCall() {
 
 
 }
+/* camera switch*/ 
+let videoDevices = [];
+let currentVideoDeviceIndex = 0;
+navigator.mediaDevices.enumerateDevices().then(devices => {
+    videoDevices = devices.filter(device => device.kind === 'videoinput');
+});
+const switchCamButt = document.querySelector('.switch-camera');
+
+switchCamButt.addEventListener('click', () => {
+    if (videoDevices.length < 2) {
+        alert("No alternate camera found.");
+        return;
+    }
+
+    currentVideoDeviceIndex = (currentVideoDeviceIndex + 1) % videoDevices.length;
+
+    const newDeviceId = videoDevices[currentVideoDeviceIndex].deviceId;
+
+    navigator.mediaDevices.getUserMedia({
+        video: { deviceId: { exact: newDeviceId } },
+        audio: true // or `false` if you don't want to re-request audio
+    }).then(newStream => {
+        // Replace video track locally
+        const newVideoTrack = newStream.getVideoTracks()[0];
+        const oldVideoTrack = mystream.getVideoTracks()[0];
+        mystream.removeTrack(oldVideoTrack);
+        mystream.addTrack(newVideoTrack);
+
+        // Replace track in each peer connection
+        for (let key in connections) {
+            const sender = connections[key].getSenders().find(s => s.track && s.track.kind === 'video');
+            if (sender) {
+                sender.replaceTrack(newVideoTrack);
+            }
+        }
+
+        // Update local video stream
+        myvideo.srcObject = new MediaStream([newVideoTrack]);
+        myvideo.muted = true;
+
+        // Optional: stop old video track
+        oldVideoTrack.stop();
+    }).catch(e => {
+        console.error("Error switching camera:", e);
+    });
+});
+
 
 function handleVideoOffer(offer, sid, cname, micinf, vidinf) {
 
