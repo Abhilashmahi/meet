@@ -1,213 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>maasMeet Room</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://kit.fontawesome.com/6510466b6c.js" crossorigin="anonymous"></script>
-
-  <script>
-    const params = new URLSearchParams(location.search);
-    if (!params.get("room")) location.href = "/";
-  </script>
-
-  <style>
-    /* ✅ Overlay fix */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .overlay .box {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
-
-    .overlay input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-    }
-
-    .overlay button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: #3498db;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    /* ✅ Responsive layout fix */
-    @media (max-width: 768px) {
-      .container-room {
-        flex-direction: column;
-      }
-
-      .left-cont,
-      .right-cont {
-        width: 100% !important;
-        padding: 10px;
-      }
-
-      .video-cont-single .video-box,
-      .video-box {
-        width: 100%;
-        max-width: 100%;
-        aspect-ratio: 1 / 1;
-        margin: auto;
-      }
-
-      .video-frame {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        aspect-ratio: 1 / 1;
-      }
-
-      .right-cont {
-        order: 2;
-      }
-
-      .tab-buttons {
-        flex-direction: row;
-        justify-content: space-around;
-      }
-
-      .tab-btn {
-        font-size: 14px;
-        padding: 10px;
-      }
-
-      .copycode-cont {
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-    }
-  </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>maasMeet Room</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/6510466b6c.js" crossorigin="anonymous"></script>
+    <script>
+        const params = new URLSearchParams(location.search);
+        if (!params.get("room")) location.href = "/";
+    </script>
 </head>
 
 <body>
-  <div class="overlay" id="overlay">
-    <div class="box">
-      <div class="head-name">Enter a Name</div>
-      <input type="text" class="name-field" placeholder="Type here.." id="name-field"><br>
-      <button class="continue-name">Continue</button>
+    <div class="overlay" id="overlay">
+        <div class="box">
+            <div class="head-name">Enter a Name</div>
+            <input type="text" class="name-field" placeholder="Type here.." id="name-field"></input><br>
+            <button class="continue-name">Continue</button>
+
+        </div>
     </div>
-  </div>
+    <div class="container-room">
+        <div class="left-cont">
 
-  <div class="container-room">
-    <div class="left-cont">
+            <div class="video-cont-single" id="vcont">
+                <div class="video-box">
+                    <video class="video-frame" id="vd1" autoplay playsinline>
+                    </video>
+                    <div class="nametag" id="myname">yourname</div>
+                    <div class="mute-icon" id="mymuteicon"><i class="fas fa-microphone-slash"></i></div>
+                    <div class="video-off" id="myvideooff">Video Off</div>
+                </div>
+            </div>
 
-      <div class="video-cont-single" id="vcont">
-        <div class="video-box">
-          <video class="video-frame" id="vd1" autoplay playsinline></video>
-          <div class="nametag" id="myname">yourname</div>
-          <div class="mute-icon" id="mymuteicon"><i class="fas fa-microphone-slash"></i></div>
-          <div class="video-off" id="myvideooff">Video Off</div>
+
+            <div class="footer">
+                <div class="utils">
+
+                     <!-- Mic Button with Tooltip -->
+                    <div class="tooltip">
+                    <div class="audio" id="mic">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <span class="tooltiptext">Microphone</span>
+                    </div>
+
+                    <!-- Camera Button with Tooltip -->
+                    <div class="tooltip">
+                    <div class="novideo" id="webcam">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <span class="tooltiptext">Camera</span>
+                    </div>
+
+                    <div class="switch-camera">
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="tooltiptext">Switch Camera</span>
+                    </div>
+
+
+                    <div class="screenshare tooltip">
+                        <i class="fas fa-desktop"></i>
+                        <span class="tooltiptext">Share Screen</span>
+                    </div>
+                    
+                    <div class="cutcall tooltip">
+                        <i class="fas fa-phone-slash"></i>
+                        <span class="tooltiptext">Leave Call</span>
+                    </div>
+
+
+                </div>
+                <div class="copycode-cont">
+                    <div class="roomcode"></div>
+                    <button class="copycode-button" onclick="CopyClassText()">Copy Code</button>
+                </div>
+            </div>
+
+
         </div>
-      </div>
 
-      <div class="whiteboard-cont">
-        <canvas id="whiteboard" height="1000" width="1000"></canvas>
-        <div class="colors-cont">
-          <div class="black" onclick="setColor('black')"></div>
-          <div class="red" onclick="setColor('#e74c3c')"></div>
-          <div class="yellow" onclick="setColor('#f1c40f')"></div>
-          <div class="green" onclick="setColor('#badc58')"></div>
-          <div class="blue" onclick="setColor('#3498db')"></div>
-          <div class="orange" onclick="setColor('#e67e22')"></div>
-          <div class="purple" onclick="setColor('#9b59b6')"></div>
-          <div class="pink" onclick="setColor('#fd79a8')"></div>
-          <div class="brown" onclick="setColor('#834c32')"></div>
-          <div class="grey" onclick="setColor('gray')"></div>
-          <div class="eraser" onclick="setEraser()"><i class="fas fa-eraser"></i></div>
-          <div class="clearboard" onclick="clearBoard()"><i class="fas fa-trash-alt"></i></div>
-        </div>
-      </div>
+       <!-- Right Side: Chat and Attendees Panel -->
+        <div class="right-cont">
+            <!-- Tabs -->
+            <div class="head-title">
+                <div class="tab-buttons">
+                    <button id="chat-tab" class="tab-btn active">Chat</button>
+                    <button id="attendees-tab" class="tab-btn">Attendees</button>
+                </div>
+            </div>
 
-      <div class="footer">
-        <div class="utils">
-          <div class="tooltip">
-            <div class="audio" id="mic"><i class="fas fa-microphone"></i></div>
-            <span class="tooltiptext">Microphone</span>
-          </div>
-          <div class="tooltip">
-            <div class="novideo" id="webcam"><i class="fas fa-video"></i></div>
-            <span class="tooltiptext">Camera</span>
-          </div>
-          <div class="switch-camera">
-            <i class="fas fa-sync-alt"></i>
-            <span class="tooltiptext">Switch Camera</span>
-          </div>
-          <div class="screenshare tooltip">
-            <i class="fas fa-desktop"></i>
-            <span class="tooltiptext">Share Screen</span>
-          </div>
-          <div class="board-icon tooltip">
-            <i class="fas fa-chalkboard"></i>
-            <span class="tooltiptext">Whiteboard</span>
-          </div>
-          <div class="cutcall tooltip">
-            <i class="fas fa-phone-slash"></i>
-            <span class="tooltiptext">Leave Call</span>
-          </div>
-        </div>
+            <!-- Chat Content Section -->
+            <div id="chat-section" class="tab-section">
+                <div class="chat-cont">
+                    <!-- Messages will be added here -->
+                </div>
+                <div class="chat-input-cont">
+                    <div class="ci-cont"><input type="text" class="chat-input" placeholder="Type chat here.."></div>
+                    <div class="ci-send">
+                    <button class="chat-send" title="Send">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    </div>
 
-        <div class="copycode-cont">
-          <div class="roomcode"></div>
-          <button class="copycode-button" onclick="CopyClassText()">Copy Code</button>
+                </div>
+            </div>
+
+            <!-- Attendees Content Section -->
+            <div id="attendees-section" class="tab-section" style="display: block;">
+                <div class="attendees-container">
+                    <h3>Attendees</h3>
+                   <ol> <div id="attendees-ul" class="attendees-list"></div></ol>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
-    <div class="right-cont">
-      <div class="head-title">
-        <div class="tab-buttons">
-          <button id="chat-tab" class="tab-btn active">Chat</button>
-          <button id="attendees-tab" class="tab-btn">Attendees</button>
-        </div>
-      </div>
 
-      <div id="chat-section" class="tab-section">
-        <div class="chat-cont"></div>
-        <div class="chat-input-cont">
-          <div class="ci-cont"><input type="text" class="chat-input" placeholder="Type chat here.."></div>
-          <div class="ci-send">
-            <button class="chat-send" title="Send"><i class="fas fa-paper-plane"></i></button>
-          </div>
-        </div>
-      </div>
-
-      <div id="attendees-section" class="tab-section" style="display: block;">
-        <div class="attendees-container">
-          <h3>Attendees</h3>
-          <ol><div id="attendees-ul" class="attendees-list"></div></ol>
-        </div>
-      </div>
     </div>
-  </div>
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="js/room.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/room.js"></script>
 </body>
 
 </html>
