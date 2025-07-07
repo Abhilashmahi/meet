@@ -294,7 +294,7 @@ navbar .logo {
   text-align: center;
   position: relative;
 }
-.container-room .left-cont .whiteboard-cont {
+/*.container-room .left-cont .whiteboard-cont {
   height: 85vh;
   width: 100%;
   position: absolute;
@@ -431,10 +431,10 @@ navbar .logo {
   font-size: 26px;
   margin-top: 10px;
   color: #2b2b2b;
-}
+} 
 .container-room .left-cont .whiteboard-cont .colors-cont .clearboard:hover {
   cursor: pointer;
-}
+}*/
 .container-room .left-cont .video-cont {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -630,7 +630,7 @@ navbar .logo {
   color: white;
   background-color: #393e46;
 }
-.container-room .left-cont .footer .utils .board-icon {
+/*.container-room .left-cont .footer .utils .board-icon {
   background-color: #d8d8d8;
   text-align: center;
   color: #393e46;
@@ -646,7 +646,7 @@ navbar .logo {
   cursor: pointer;
   color: white;
   background-color: #393e46;
-}
+}*/
 .container-room .left-cont .footer .utils .cutcall {
   background-color: #cc4e4e;
   text-align: center;
@@ -964,14 +964,14 @@ navbar .logo {
 }
 
 
-  /* Adjust whiteboard layout */
+  /* Adjust whiteboard layout 
   .container-room .left-cont .whiteboard-cont {
     position: static;
     padding: 10px;
     height: auto;
   }
 
-  /* Color palette in whiteboard – horizontal & wrapped */
+  /* Color palette in whiteboard – horizontal & wrapped 
   .container-room .left-cont .whiteboard-cont .colors-cont {
     position: static;
     flex-direction: row;
@@ -980,7 +980,7 @@ navbar .logo {
     gap: 5px;
     margin-top: 10px;
   }
-
+*/
   /* Footer buttons layout (mic, cam, etc.) */
   .container-room .left-cont .footer .utils {
     width: 100%;
