@@ -801,7 +801,7 @@ socket.on('action', (msg, sid) => {
     }
 })
 
-whiteboardButt.addEventListener('click', () => {
+/*whiteboardButt.addEventListener('click', () => {
     if (boardVisisble) {
         whiteboardCont.style.visibility = 'hidden';
         boardVisisble = false;
@@ -810,7 +810,7 @@ whiteboardButt.addEventListener('click', () => {
         whiteboardCont.style.visibility = 'visible';
         boardVisisble = true;
     }
-})
+})*/
 
 cutCall.addEventListener('click', () => {
     location.href = '/';
